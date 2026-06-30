@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 /* ── Palette ── */
 const C = {
-  bg: '#f7f6f3', card: '#ffffff', bd: '#e8e3dc',
-  h: '#1e1b4b', sub: '#64748b', lab: '#6b7280', val: '#1e293b',
-  shadow: '0 1px 8px rgba(30,27,75,.07)',
-  shadowHover: '0 6px 24px rgba(30,27,75,.13)',
+  bg: 'var(--bg)', card: 'var(--surface)', bd: 'var(--border)',
+  h: 'var(--text)', sub: 'var(--text-secondary)', lab: 'var(--text-muted)', val: 'var(--text)',
+  shadow: 'var(--shadow-sm)',
+  shadowHover: 'var(--shadow-md)',
 };
 
 /* ── Semester Info ── */

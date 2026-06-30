@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
  * Every "Book a Demo" / "Get Started" CTA invokes `onBookDemo` to flip
  * the parent view to the existing Login screen.
  */
-export default function Landing({ onBookDemo }) {
+export default function Landing({ onBookDemo, triggerPreloader }) {
   const [scrolled, setScrolled] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
 
@@ -533,6 +533,44 @@ export default function Landing({ onBookDemo }) {
           <span className="u1-footer-url">www.optatech-innovations.com</span>
         </div>
       </footer>
+
+      {/* Floating Demo Trigger for Preloader */}
+      {triggerPreloader && (
+        <button 
+          onClick={triggerPreloader}
+          style={{
+            position: 'fixed',
+            bottom: '24px',
+            right: '24px',
+            zIndex: 99999,
+            background: 'rgba(99, 102, 241, 0.95)',
+            color: '#ffffff',
+            border: 'none',
+            padding: '12px 20px',
+            borderRadius: '30px',
+            fontWeight: '700',
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+            boxShadow: '0 8px 30px rgba(99, 102, 241, 0.4)',
+            backdropFilter: 'blur(10px)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontFamily: 'Inter, sans-serif',
+            transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 12px 40px rgba(99, 102, 241, 0.6)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'none';
+            e.currentTarget.style.boxShadow = '0 8px 30px rgba(99, 102, 241, 0.4)';
+          }}
+        >
+          <span>⚡</span> Replay Preloader
+        </button>
+      )}
     </div>
   );
 }
@@ -542,9 +580,13 @@ export default function Landing({ onBookDemo }) {
    feel like one continuous product.
 ════════════════════════════════════════════════════════════════════════════ */
 const LANDING_STYLES = `
-/* Reset the project's dark global theme so the landing fills white */
+/* Reset the project's dark global theme so the landing fills white with grid pattern */
 body.lp-landing-body {
-  background: #ffffff !important;
+  --color: #E1E1E1;
+  background-color: #ffffff !important;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent) !important;
+  background-size: 55px 55px !important;
   color: #1e1b4b !important;
   overflow-x: hidden;
 }
@@ -553,7 +595,7 @@ body.lp-landing-body {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
-  background: #ffffff;
+  background: transparent !important;
 }
 
 .lp-landing {
@@ -577,7 +619,7 @@ body.lp-landing-body {
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--u1-ink);
-  background: #ffffff;
+  background: transparent !important;
   line-height: 1.65;
   letter-spacing: -0.1px;
 }
@@ -763,11 +805,7 @@ body.lp-landing-body {
 /* ───────── Hero ───────── */
 .u1-hero {
   position: relative;
-  --color: #E1E1E1;
-  background-color: #ffffff;
-  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
-      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
-  background-size: 55px 55px;
+  background: transparent;
   padding: 180px 0 130px;
   overflow: hidden;
 }
@@ -1068,7 +1106,7 @@ body.lp-landing-body {
 /* ───────── Sections ───────── */
 .u1-section { padding: 110px 0; position: relative; }
 .u1-section-tinted {
-  background: linear-gradient(180deg, rgba(99, 102, 241, 0.04), #ffffff);
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.04), transparent);
   border-top: 1px solid var(--u1-line-soft);
   border-bottom: 1px solid var(--u1-line-soft);
 }
@@ -1245,7 +1283,7 @@ body.lp-landing-body {
 
 /* ───────── Footer ───────── */
 .u1-footer {
-  background: linear-gradient(180deg, #ffffff, rgba(99, 102, 241, 0.05));
+  background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.05));
   border-top: 1px solid var(--u1-line-soft);
   padding: 80px 0 28px;
 }

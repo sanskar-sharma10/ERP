@@ -1,0 +1,217 @@
+@font-face {
+  font-display: block;
+  font-family: Mori;
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://assets.codepen.io/16327/PPMori-Regular.woff) format("woff");
+}
+
+.erp-preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #090a0f; /* Sleek futuristic dark background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999; /* Make sure it stays on top of everything */
+  overflow: hidden;
+  font-family: "Mori", "Inter", sans-serif;
+  color: rgb(255, 252, 225);
+  box-sizing: border-box;
+}
+
+/* Premium ambient backdrop elements */
+.erp-preloader-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 252, 225, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 252, 225, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.erp-preloader-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+/* Glassmorphic box containers */
+.erp-preloader-card {
+  position: relative;
+  background: rgba(255, 252, 225, 0.02);
+  border: 1px solid rgba(255, 252, 225, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 252, 225, 0.05);
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+/* Aspect ratios & widths based on matching media query rules */
+.erp-preloader-card.small {
+  aspect-ratio: 9/16;
+  width: 22%;
+  min-width: 280px;
+  max-width: 90%;
+}
+
+.erp-preloader-card.large {
+  aspect-ratio: 16/9;
+  width: 48%;
+  min-width: 500px;
+  max-width: 95%;
+}
+
+/* Spinning elements styling */
+.erp-preloader-spinner-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.erp-preloader-img {
+  width: 45%;
+  height: 45%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(255, 252, 225, 0.25));
+  transform-origin: center center;
+}
+
+/* Premium layered spinning rings behind the central image */
+.erp-preloader-ring-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 252, 225, 0.05);
+  border-top: 1px dashed rgba(255, 252, 225, 0.35);
+  animation: erp-spin-clockwise 8s linear infinite;
+  pointer-events: none;
+}
+
+.erp-preloader-ring-inner {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 102, 241, 0.08);
+  border-bottom: 1px dashed rgba(99, 102, 241, 0.5);
+  animation: erp-spin-counter 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes erp-spin-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes erp-spin-counter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Bottom info panel (Text and progress bar) */
+.erp-preloader-info {
+  position: absolute;
+  bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.erp-preloader-percentage {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: rgb(255, 252, 225);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.95;
+  text-shadow: 0 0 12px rgba(255, 252, 225, 0.15);
+}
+
+.erp-preloader-braces {
+  position: relative;
+  font-size: clamp(0.85rem, 1.05rem, 2.2vw);
+  font-weight: 600;
+  color: rgb(255, 252, 225);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0 1.75rem;
+  margin-top: 4px;
+}
+
+.erp-preloader-braces::before {
+  position: absolute;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 27 78'%3E%3Cpath fill='%23FFFCE1' d='M26.52 77.21h-5.75c-6.83 0-12.38-5.56-12.38-12.38V48.38C8.39 43.76 4.63 40 .01 40v-4c4.62 0 8.38-3.76 8.38-8.38V12.4C8.38 5.56 13.94 0 20.77 0h5.75v4h-5.75c-4.62 0-8.38 3.76-8.38 8.38V27.6c0 4.34-2.25 8.17-5.64 10.38 3.39 2.21 5.64 6.04 5.64 10.38v16.45c0 4.62 3.76 8.38 8.38 8.38h5.75v4.02Z'%3E%3C/path%3E%3C/svg%3E");
+  right: 100%;
+  height: 140%;
+  top: -20%;
+  aspect-ratio: 1/2;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.erp-preloader-braces::after {
+  position: absolute;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 27 78'%3E%3Cpath fill='%23FFFCE1' d='M26.52 77.21h-5.75c-6.83 0-12.38-5.56-12.38-12.38V48.38C8.39 43.76 4.63 40 .01 40v-4c4.62 0 8.38-3.76 8.38-8.38V12.4C8.38 5.56 13.94 0 20.77 0h5.75v4h-5.75c-4.62 0-8.38 3.76-8.38 8.38V27.6c0 4.34-2.25 8.17-5.64 10.38 3.39 2.21 5.64 6.04 5.64 10.38v16.45c0 4.62 3.76 8.38 8.38 8.38h5.75v4.02Z'%3E%3C/path%3E%3C/svg%3E");
+  left: 100%;
+  height: 140%;
+  transform: rotate(180deg);
+  top: -20%;
+  aspect-ratio: 1/2;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.erp-preloader-progress-track {
+  width: 160px;
+  height: 2px;
+  background: rgba(255, 252, 225, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.erp-preloader-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6366f1, rgb(255, 252, 225));
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.6);
+}

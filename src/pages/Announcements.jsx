@@ -3,10 +3,10 @@ import { useERP } from '../context/ERPContext';
 
 /* ─── Theme ─── */
 const C = {
-  bg: '#f7f6f3', card: '#ffffff', bd: '#e8e3dc',
-  h: '#1e1b4b', sub: '#64748b', lab: '#6b7280',
-  shadow: '0 1px 8px rgba(30,27,75,.07)',
-  shadowHover: '0 6px 24px rgba(30,27,75,.12)',
+  bg: 'var(--bg)', card: 'var(--surface)', bd: 'var(--border)',
+  h: 'var(--text)', sub: 'var(--text-secondary)', lab: 'var(--text-muted)',
+  shadow: 'var(--shadow-sm)',
+  shadowHover: 'var(--shadow-md)',
 };
 
 /* ─── Source Config ─── */
@@ -545,13 +545,13 @@ export default function Announcements() {
       `}</style>
 
       {/* ── Header ── */}
-      <div style={{ background: 'linear-gradient(135deg, #faf9f6 0%, #f5f3ef 100%)', borderRadius: '20px', padding: '2rem 2.2rem', marginBottom: '1.5rem', border: '1px solid #e8e3dc', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
+      <div style={{ background: 'var(--surface)', borderRadius: 'var(--r-xl)', padding: '20px 24px', marginBottom: '20px', border: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', boxShadow: 'var(--shadow-sm)' }}>
         <div>
-          <h2 style={{ margin: '0 0 6px', fontSize: '1.5rem', fontWeight: '800', color: C.h, lineHeight: '1.3' }}>
-            Announcements & <span style={{ color: '#7c3aed' }}>Notifications</span>
+          <h2 style={{ margin: '0 0 4px', fontSize: '1.4rem', fontWeight: '800', color: 'var(--text)', letterSpacing: '-0.3px' }}>
+            Notice Board <span style={{ color: 'var(--primary)' }}>& Announcements</span>
           </h2>
-          <p style={{ margin: 0, fontSize: '0.82rem', color: C.sub, lineHeight: '1.6', maxWidth: '500px' }}>
-            School-wide notices, deadlines, and updates. {today}
+          <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
+            School-wide notices, deadlines, and updates · {today}
           </p>
         </div>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
